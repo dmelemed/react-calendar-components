@@ -162,7 +162,7 @@ var HeatMap = React.createClass({
 
             let domainWidth = domainData.columns * 12 - 2;
             console.log('DomainWidth', domainWidth);
-            sumX += domainWidth;
+            sumX += domainWidth + 2;
 
             return (
                 <svg key={i} className="graph-domain" width={domainWidth} height="147" x={sumX - domainWidth}
@@ -170,7 +170,7 @@ var HeatMap = React.createClass({
                     <svg width={domainWidth} height="147">
                         {boxes}
                     </svg>
-                    <text className="graphLabel" y={7 * 12 + 12 } x="12" textAnchor="middle"
+                    <text className="graphLabel" y={7 * 12 + 12 } x="1" textAnchor="start"
                           dominantBaseline="middle">
                         {domainData.label}
                     </text>
