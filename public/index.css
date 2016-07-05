@@ -1,12 +1,18 @@
 .domain-background {
     fill: none;
 }
+
+.react-calendar-heapmap .graphLabel {
+  fill: 'black';
+}
 /*
  * react-calendar-heatmap styles
  *
  * All of the styles in this file are optional and configurable!
  * The github and gitlab color scales are provided for reference.
  */
+
+
 
 .react-calendar-heatmap {
   display: block;
@@ -16,6 +22,11 @@
   font-size: 10px;
   fill: #aaa;
 }
+.react-calendar-heatmap text.graphLabel {
+  font-size: 8px;
+  fill: #aaa;
+}
+
 
 .react-calendar-heatmap rect:hover {
   stroke: #555;

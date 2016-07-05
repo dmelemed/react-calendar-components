@@ -28,10 +28,10 @@ var HeatMap = React.createClass({
         let data = [];
         for (var i = 0; i < 186; i++) {
             // if (i !== 25) {
-                data.push({
-                    date: moment().subtract(i, 'days'),
-                    value: Math.floor(Math.random() * 5)
-                });
+            data.push({
+                date: moment().subtract(i, 'days'),
+                value: Math.floor(Math.random() * 5)
+            });
             // }
         }
         console.log(data[0].date.valueOf());
@@ -68,7 +68,7 @@ var HeatMap = React.createClass({
             last = clonedDate.endOf('month').week();
 
             // In case last week is in next year
-            if( first > last) {
+            if (first > last) {
                 last = first + last;
             }
             return last - first + 1;
@@ -132,7 +132,8 @@ var HeatMap = React.createClass({
         console.log('Domain keys', domainKeys);
 
         // ITERATE OVER DOMAIN FOR SUBDOMAIN KEYS AND PUT MATCHING KEYS IN DOMAIN
-        let sumX = 0;
+        var leftLabelWidth = 10;
+        let sumX = leftLabelWidth;
 
         let domains = domainKeys.map((domainData, i) => {
             let width = 140;
@@ -155,9 +156,8 @@ var HeatMap = React.createClass({
                         </g>
                     );
                 } else {
-
+                    // TODO: missing elements
                 }
-
             });
 
             let domainWidth = domainData.columns * 12 - 2;
@@ -165,7 +165,8 @@ var HeatMap = React.createClass({
             sumX += domainWidth;
 
             return (
-                <svg key={i} className='graph-domain' width={domainWidth} height="147" x={sumX - domainWidth} y="0">
+                <svg key={i} className="graph-domain" width={domainWidth} height="147" x={sumX - domainWidth}
+                     y="0">
                     <svg width={domainWidth} height="147">
                         {boxes}
                     </svg>
@@ -177,11 +178,24 @@ var HeatMap = React.createClass({
             );
         });
 
+        var days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        let title = days.map((label, i) => {
+            return (
+                <svg key={i} x="0" y={12*i + 2} height="12">
+                    <text className="graphLabel" y="0" x="0" dy="6">
+                        {label}
+                    </text>
+                </svg>
+            );
+        });
+
+
         return (
             <div>
                 <p>Hello, World</p>
                 <Chart height={height} width={width} margin={margin}>
                     <svg className="react-calendar-heatmap" x="0" y="0">
+                        {title}
                         {domains}
                     </svg>
                     <svg className="graph-legend" x="0" y="143" height="10" width="58">
