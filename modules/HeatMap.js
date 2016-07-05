@@ -26,13 +26,13 @@ var HeatMap = React.createClass({
 
         // CREATE DATA
         let data = [];
-        for (var i = 0; i < 180; i++) {
-            if(i !== 25) {
+        for (var i = 0; i < 186; i++) {
+            // if (i !== 25) {
                 data.push({
                     date: moment().subtract(i, 'days'),
                     value: Math.floor(Math.random() * 5)
                 });
-            }
+            // }
         }
         console.log(data[0].date.valueOf());
 
@@ -60,18 +60,30 @@ var HeatMap = React.createClass({
 
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-        // var domainKeys = [],
-        //     domain = 'month',
-        //     subDomain = 'day',
+        function getWeeksInMonth(dateInMonth) {
+            var clonedDate = moment(dateInMonth),
+                first,
+                last;
+            first = clonedDate.startOf('month').week();
+            last = clonedDate.endOf('month').week();
 
-        // Before
-        let domainIndex = 0,
-            indexedData = [];
+            // In case last week is in next year
+            if( first > last) {
+                last = first + last;
+            }
+            return last - first + 1;
+        }
 
-        // INDEX AS MOMENT DATE
-        data.forEach((e) => {
-            indexedData[e.date] = e;
-        });
+        // INDEX DATA AS MOMENT DATE
+        function indexData(data) {
+            var indexedData = [];
+            data.forEach((e) => {
+                indexedData[e.date] = e;
+            });
+            return indexedData;
+        }
+
+        var indexedData = indexData(data);
 
         console.log(indexedData);
 
@@ -79,134 +91,98 @@ var HeatMap = React.createClass({
         // From start key to end key
         var subDomainKeys = [],
             currentKey = moment(startKey); // create clone
-        while(!currentKey.isAfter(endKey, subDomain)) {
+
+        while (!currentKey.isAfter(endKey, subDomain)) {
             subDomainKeys.push(currentKey);
-            currentKey.add(1, subDomain);
+            currentKey = moment(currentKey).add(1, subDomain);
         }
         console.log('SubDomain Keys', subDomainKeys);
 
-
         // CREATE DOMAIN KEYS
-        // ITERATE OVER DOMAIN FOR SUBDOMAIN KEYS AND PUT MATCHING KEYS IN DOMAIN
-
-        // // TODO: fix off by one
-        // console.log('Creating domain keys');
-        // while (!isInSameDomain(currentKey, endKey, domain)) {
-        //     if (!domainKeys[currentKey.startOf(domain)]) {
-        //         domainKeys[currentKey.startOf(domain)] = {
-        //             index: domainIndex++,
-        //             label: months[domainIndex % 12],
-        //             dataKeys: []
-        //         };
-        //     }
-        //     currentKey = currentKey.add(1, domain);
-        // }
-        // domainKeys[endKey.startOf(domain)] = {
-        //     index: domainIndex++,
-        //     label: months[domainIndex % 12],
-        //     dataKeys = []
-        // };
-        // console.log(domainKeys);
-
-        // CREATE SUBDOMAIN DATA
-        var subDomainKeys = [];
-        currentKey = moment(startKey);
-
-        // while (!isInSameDomain(currentKey, endKey, subDomain)) {
-        //     let domain = domainKeys[currentKey.startOf(domain)];
-        //     let column = e.date.week() - startKey.week();
-        //     domain.data.push({
-        //         x:  12 * column + (12 + domainGutterSize) * (e.date.month() - startKey.month()),
-        //         y: 12 * e.date.day(),
-        //         classes: classNames(`color-github-${e.value}`);
-        //     });
-        // }
-
-        // var isAtFinalKey = function (currentKey) {
-        //     console.log(currentKey, endKey, subDomain);
-        //     isInSameDomain(currentKey, endKey, subDomain);
-        // };
-        //
-        // // TODO: validate end date is after start date
-        // console.log('Getting domain keys');
-        // console.log(moment(currentKey).get('day'));
-        // console.log(moment(currentKey).week());
-        // while (!isAtFinalKey(currentKey)) {
-        //     var currentKeyMoment = moment(currentKey);
-        //     subDomainKeys[currentKey] = {
-        //         domain: 'TODO',
-        //         column: 'TODO - ',
-        //         row: ''
-        //     };
-        // }
-
-        //     currentKey = moment(currentKey).add(1, domain);
-        // }
-        // domainKeys.push(currentKey);
-        // console.log('Domain keys', domainKeys.length, domainKeys);
-
-        // console.log('Getting subdomain keys');
-        // currentKey = moment(startDate);
-        // while (!isInSameDomain(currentKey, endKey, subDomain)) {
-        //     subDomainKeys.push(currentKey);
-        //     currentKey = moment(currentKey).add(1, subDomain);
-        // }
-        // subDomainKeys.push(currentKey);
-
-        // console.log('SubDomain keys', subDomainKeys.length, subDomainKeys);
-
-        // ITERATE OVER DATA FOR KEYS TO CREATE MASTER DATA SET
-        // ASSIGN TO EACH VALUE ALL PROPERTIES W/ SUBDOMAININDEX AS KEY
-        // var domainIndex = 0,
-        //     subDomainIndex = 0,
-        //     dataset = [];
-
-        // TODO: one loops to map everything
-
-
-        // CREATE BOXES ON DATA SET
-        let domainGutterSize = 2;
-
-        console.log('start', startKey);
-        console.log('end', endKey);
-        let boxes = sorted.map((e, index) => {
-            let y = 12 * e.date.day();
-            let column = e.date.week() - startKey.week();
-            // console.log(column, e.date.month());
-            let x = 12 * column + (12 + domainGutterSize) * (e.date.month() - startKey.month());
-            let boxClasses = classNames(`color-github-${e.value}`);
-
-            return (
-                <g onClick={() => { alert(e.date.day()); }} key={index}>
-                    <rect className={boxClasses} width="10" height="10" x={x} y={y}/>
-                </g>
-            );
+        var domainKeys = [],
+            domainIndex = -1,
+            currentDomain = null;
+        subDomainKeys.forEach((key, i) => {
+            // console.log('Element', key, i);
+            let domainKey = moment(key).startOf(domain);
+            // console.log('Domain', domainKey);
+            var dataItem = indexedData[key] || {
+                    date: key,
+                    value: 0
+                };
+            // console.log('Data item', dataItem, key);
+            if (!currentDomain || !domainKey.isSame(currentDomain, domain)) {
+                domainIndex++;
+                var columns = getWeeksInMonth(domainKey);
+                var domainData = {
+                    index: domainIndex,
+                    label: months[domainIndex % 12],
+                    dataSet: [dataItem],
+                    domainKey: domainKey,
+                    columns: columns
+                };
+                domainKeys.push(domainData);
+                currentDomain = domainKey;
+            } else {
+                console.log('DomainKeys', domainKeys);
+                domainKeys[domainIndex].dataSet.push(dataItem);
+            }
         });
 
-        let DataSet = React.createClass({
-            render() {
-                return (
-                    <svg className="react-calendar-heatmap" x="0" y="0" width="1000" height="147">
-                        <rect className="domain-background" width="1000" height="143"/>
-                        <svg className="subdomain-background">
-                            {boxes}
-                        </svg>
-                        <text className="graphLabel" y="132.5" x="36" text-anchor="middle" dominant-baseline="middle">
-                            1:00
-                        </text>
+        console.log('Domain keys', domainKeys);
+
+        // ITERATE OVER DOMAIN FOR SUBDOMAIN KEYS AND PUT MATCHING KEYS IN DOMAIN
+        let sumX = 0;
+
+        let domains = domainKeys.map((domainData, i) => {
+            let width = 140;
+            let height = 12 * 7;
+
+
+            let boxes = domainData.dataSet.map((e, index) => {
+                // console.log('E', e);
+
+                if (e) {
+                    let y = 12 * e.date.day();
+                    let column = e.date.week() - domainData.domainKey.week();
+                    // console.log(column, e.date.month());
+                    let x = 12 * column;
+                    let boxClasses = classNames(`color-github-${e.value}`);
+
+                    return (
+                        <g onClick={() => { alert(e.date.toString()); }} key={index}>
+                            <rect className={boxClasses} width="10" height="10" x={x} y={y}/>
+                        </g>
+                    );
+                } else {
+
+                }
+
+            });
+
+            let domainWidth = domainData.columns * 12 - 2;
+            console.log('DomainWidth', domainWidth);
+            sumX += domainWidth;
+
+            return (
+                <svg key={i} className='graph-domain' width={domainWidth} height="147" x={sumX - domainWidth} y="0">
+                    <svg width={domainWidth} height="147">
+                        {boxes}
                     </svg>
-                );
-            }
+                    <text className="graphLabel" y={7 * 12 + 12 } x="12" textAnchor="middle"
+                          dominantBaseline="middle">
+                        {domainData.label}
+                    </text>
+                </svg>
+            );
         });
 
         return (
             <div>
                 <p>Hello, World</p>
                 <Chart height={height} width={width} margin={margin}>
-                    <svg className="graph" x="0" y="0">
-                        <DataSet>
-
-                        </DataSet>
+                    <svg className="react-calendar-heatmap" x="0" y="0">
+                        {domains}
                     </svg>
                     <svg className="graph-legend" x="0" y="143" height="10" width="58">
                     </svg>
