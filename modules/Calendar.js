@@ -41,7 +41,7 @@ var Calendar = React.createClass({
             return last - first + 1;
         }
 
-        function getCalendarBlocks(daysInMonth) {
+        function getPaddedDaysOfMonth(daysInMonth) {
             let startOfMonth = daysInMonth[0],
                 startDayOfWeek = startOfMonth.day(),
                 endOfMonthDayOfWeek = startOfMonth.clone().endOf('month').day(),
@@ -50,7 +50,8 @@ var Calendar = React.createClass({
             console.log('START', startDayOfWeek);
             console.log('END', startOfMonth.clone().endOf('month').day());
 
-            for (let i = 0; i < startDayOfWeek - 1; ++i) {
+            for (let i = 0; i < startDayOfWeek; ++i) {
+                console.log(i);
                 paddedDaysOfMonth.push(null)
             }
 
@@ -75,23 +76,45 @@ var Calendar = React.createClass({
             borderWidth: '1px',
             borderColor: '#1a2a4f',
             boxSizing: 'border-box'
-        }
+        };
 
-        let dayBoxes = getCalendarBlocks(daysInMonth).map((day, index) => {
+        let dayBoxes = getPaddedDaysOfMonth(daysInMonth).map((day, index) => {
             return (
                 <li key={day ? day.toString() : index} style={dayBoxStyle}>
-                    {day ? day.date() : 'A'}
+                    {day ? day.date() : '-'}
                 </li>
             );
         });
 
+        const shortenedDaysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const dayOfWeekStyle = {
+            width: '14%',
+            height: '25px',
+            display: 'inline-block',
+            backgroundColor: '#d3d3d3',
+            borderStyle: 'solid',
+            borderWidth: '1px',
+            borderColor: '#1a2a4f',
+            boxSizing: 'border-box',
+            textAlign: 'center'
+        };
+
+        let dayOfWeekLabels = shortenedDaysOfWeek.map((dayName, index) => {
+            return (
+                <li key={index} style={dayOfWeekStyle}>{dayName}</li>
+            );
+        });
+
+
         const ulStyle = {
             padding: '0px'
-        }
+        };
+        
         return (
             <div>
                 <h1>Calendar</h1>
                 <ul style={ulStyle}>
+                    {dayOfWeekLabels}
                     {dayBoxes}
                 </ul>
             </div>
