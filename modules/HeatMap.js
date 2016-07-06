@@ -134,6 +134,7 @@ var HeatMap = React.createClass({
         // ITERATE OVER DOMAIN FOR SUBDOMAIN KEYS AND PUT MATCHING KEYS IN DOMAIN
         var leftLabelWidth = 10;
         let sumX = leftLabelWidth;
+        var domainGutter = 2;
 
         let domains = domainKeys.map((domainData, i) => {
             let width = 140;
@@ -162,7 +163,7 @@ var HeatMap = React.createClass({
 
             let domainWidth = domainData.columns * 12 - 2;
             console.log('DomainWidth', domainWidth);
-            sumX += domainWidth + 2;
+            sumX += domainWidth + domainGutter;
 
             return (
                 <svg key={i} className="graph-domain" width={domainWidth} height="147" x={sumX - domainWidth}

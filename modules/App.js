@@ -2,33 +2,34 @@ import React from 'react'
 import d3 from 'd3'
 import moment from 'moment'
 import HeatMap from './HeatMap'
-
+import Calendar from './Calendar'
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    // this.state = {open: false};
-  }
+    constructor(props) {
+        super(props);
+        // this.state = {open: false};
+    }
 
-  render() {
+    render() {
 
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-    var now = moment().toDate().toString();
-    return (
-        <div>
-          <HeatMap
-              width={1000}
-              height={736}
-              margin={{
+        var now = moment().toDate().toString();
+        return (
+            <div>
+                <HeatMap
+                    width={1000}
+                    height={150}
+                    margin={{
                 left: 100,
                 top: 100
               }}
-          />
-        </div>
-    );
-  }
+                />
+                <Calendar></Calendar>
+            </div>
+        );
+    }
 }
 
 
