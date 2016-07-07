@@ -96,7 +96,6 @@ var HeatMap = React.createClass({
             subDomainKeys.push(currentKey);
             currentKey = moment(currentKey).add(1, subDomain);
         }
-        console.log('SubDomain Keys', subDomainKeys);
 
         // CREATE DOMAIN KEYS
         var domainKeys = [],
@@ -124,7 +123,6 @@ var HeatMap = React.createClass({
                 domainKeys.push(domainData);
                 currentDomain = domainKey;
             } else {
-                console.log('DomainKeys', domainKeys);
                 domainKeys[domainIndex].dataSet.push(dataItem);
             }
         });

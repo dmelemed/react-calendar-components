@@ -3,6 +3,14 @@ import d3 from 'd3'
 import moment from 'moment'
 import HeatMap from './HeatMap'
 import Calendar from './Calendar'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 export default class App extends React.Component {
 
     constructor(props) {
@@ -17,8 +25,8 @@ export default class App extends React.Component {
 
         var now = moment().toDate().toString();
         return (
-            <div>
-                <HeatMap
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div><HeatMap
                     width={1000}
                     height={150}
                     margin={{
@@ -26,8 +34,8 @@ export default class App extends React.Component {
                 top: 100
               }}
                 />
-                <Calendar></Calendar>
-            </div>
+                    <Calendar/></div>
+            </MuiThemeProvider>
         );
     }
 }
