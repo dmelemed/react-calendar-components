@@ -1,3 +1,7 @@
+html {
+  font-family: "Open Sans";
+}
+
 .domain-background {
     fill: none;
 }
@@ -8,6 +12,10 @@
 
 .calendarBox {
   padding: 2px; /* 1 default */
+}
+
+.todayCalendarBox {
+  background-color: #DDDDDD;
 }
 
 /*

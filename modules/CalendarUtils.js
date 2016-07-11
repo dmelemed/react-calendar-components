@@ -31,13 +31,26 @@ var calendarUtils = {
         return daysOfWeek;
     },
 
+    // TODO: fix  bug on december 2017 - now fixed, but not clean
     getDaysByWeekInMonth(month, year){
-        let dayInMonth = moment().year(year).month(month),
+        let dayInMonth = moment().year(year).month(month);
+        console.log(dayInMonth.endOf('month'));
+        let
             startWeek = dayInMonth.startOf('month').week(),
             endWeek = dayInMonth.endOf('month').week(),
-            daysByWeek = [];
+            daysByWeek = [],
+            nextYear = false;
+
+        console.log(dayInMonth, startWeek, endWeek);
+        if (endWeek == 1) {
+            endWeek = dayInMonth.weeksInYear();
+            nextYear = true;
+        }
         for (let week = startWeek; week <= endWeek; ++week) {
             daysByWeek.push(this.getDaysOfWeek(week, year));
+        }
+        if (nextYear) { // next year
+            daysByWeek.push(this.getDaysOfWeek(1, year + 1));
         }
         return daysByWeek;
     }
