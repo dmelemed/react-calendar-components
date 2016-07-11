@@ -23,14 +23,13 @@ var Calendar = React.createClass({
     render() {
         const styles = {
             dayBoxStyle: {
-                width: '14%',
                 height: '100px',
                 display: 'table-cell',
                 borderStyle: 'solid',
                 borderWidth: '1px',
                 borderColor: '#1a2a4f',
-                boxSizing: 'border-box'
-
+                boxSizing: 'border-box',
+                verticalAlign: 'top'
             },
             weekRowStyle: {},
             dayOfWeekStyle: {
@@ -40,7 +39,8 @@ var Calendar = React.createClass({
                 borderWidth: '1px',
                 borderColor: '#1a2a4f',
                 boxSizing: 'border-box',
-                textAlign: 'center'
+                textAlign: 'center',
+                verticalAlign: 'top'
             },
             tableStyle: {
                 width: '100%',
