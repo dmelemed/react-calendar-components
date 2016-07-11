@@ -3,8 +3,9 @@ import d3 from 'd3';
 import moment from 'moment';
 import classNames from 'classnames';
 import calendarUtils from './CalendarUtils';
+import MonthCell from './MonthCell';
 
-var Calendar = React.createClass({
+export const Calendar = React.createClass({
 
     propTypes: {},
 
@@ -46,7 +47,7 @@ var Calendar = React.createClass({
                 width: '100%',
                 borderSpacing: '0px',
                 tableLayout: 'fixed'
-    },
+            },
             eventStyle: {
                 fontWeight: 'bold',
                 fontSize: '12px',
@@ -119,34 +120,8 @@ var Calendar = React.createClass({
         let dayBoxes = daysByWeekInMonth.map((week, weekIndex) => {
             let daysInWeekBoxes = week.map((day, dayIndex) => {
                 let eventsOnDay = getEventsOnDate(day);
-                let eventBoxes = eventsOnDay.map((event, eventIndex) => {
-                    let eventTime = moment(event.date).format('h:mm a')
-                    return (
-                        <div key={eventIndex}
-                             style={styles.eventStyle}>{eventTime} {event.title ? event.title : '(No title)'}</div>
-                    );
-                });
-                // console.log(day, eventsOnDay);
-                let dayBoxesClasses = classNames({
-                    calendarBox: true,
-                    todayCalendarBox: day.isSame(this.state.today, 'day')
-                });
-
                 return (
-                    <td className={dayBoxesClasses} key={dayIndex} style={styles.dayBoxStyle}>
-                        <table>
-                            <thead>
-                            <tr>
-                                <td>{day.month() == month ? day.date() : ''}</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{eventBoxes}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
+                    <MonthCell key={dayIndex} day={day} today={this.state.today} style={styles.dayBoxStyle} eventStyle={styles.eventStyle} monthIndex={month} events={eventsOnDay}/>
                 );
             });
             return <tr style={styles.weekRowStyle} key={weekIndex}>{daysInWeekBoxes}</tr>;
@@ -163,12 +138,16 @@ var Calendar = React.createClass({
             <div>
                 <h1>Calendar</h1>
                 <div style={{float: 'left'}}>
-                    <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary" type="button"
+                    <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary"
+                            type="button"
                             onClick={this.handleClick.bind(this, 'L')}>&lt;</button>
-                    <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary" type="button"
+                    <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary"
+                            type="button"
                             onClick={this.handleClick.bind(this, 'R')}>&gt;</button>
-                    <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary" type="button"
-                            onClick={this.handleClick.bind(this, 'TODAY')}>Today</button>
+                    <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary"
+                            type="button"
+                            onClick={this.handleClick.bind(this, 'TODAY')}>Today
+                    </button>
                 </div>
                 <div style={{textAlign: 'center'}}>
                     <h2 style={{display: 'inline-block'}}>{date.format('MMMM YYYY')}</h2>
@@ -188,7 +167,7 @@ var Calendar = React.createClass({
             this.setState({
                 date: this.state.date.subtract(1, 'month')
             });
-        } else if(action === 'R') {
+        } else if (action === 'R') {
             this.setState({
                 date: this.state.date.add(1, 'month')
             });
@@ -199,5 +178,3 @@ var Calendar = React.createClass({
         }
     }
 });
-
-export { Calendar };
