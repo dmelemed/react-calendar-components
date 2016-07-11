@@ -5,6 +5,11 @@
 .react-calendar-heapmap .graphLabel {
   fill: 'black';
 }
+
+.calendarBox {
+  padding: 2px; /* 1 default */
+}
+
 /*
  * react-calendar-heatmap styles
  *

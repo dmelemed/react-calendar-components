@@ -24,16 +24,17 @@ export default class App extends React.Component {
         var days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
         var now = moment().toDate().toString();
-        return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div><HeatMap
-                    width={1000}
-                    height={150}
-                    margin={{
+
+      /*  <HeatMap
+            width={1000}
+            height={150}
+            margin={{
                 left: 100,
                 top: 100
-              }}
-                />
+              }}/>*/
+        return (
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div>
                     <Calendar/></div>
             </MuiThemeProvider>
         );
