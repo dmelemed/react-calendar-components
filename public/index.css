@@ -18,6 +18,9 @@ html {
   background-color: #DDDDDD;
 }
 
+table td:last-child{
+  width:100%;
+}
 /*
  * react-calendar-heatmap styles
  *
