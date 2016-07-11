@@ -33,10 +33,7 @@ export default class App extends React.Component {
                 top: 100
               }}/>*/
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div>
-                    <Calendar/></div>
-            </MuiThemeProvider>
+            <div>Hello, World</div>
         );
     }
 }

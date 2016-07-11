@@ -200,4 +200,4 @@ var Calendar = React.createClass({
     }
 });
 
-module.exports = Calendar;
+export { Calendar };

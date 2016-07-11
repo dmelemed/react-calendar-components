@@ -207,4 +207,4 @@ var HeatMap = React.createClass({
 });
 
 
-module.exports = HeatMap;
+export { HeatMap };
