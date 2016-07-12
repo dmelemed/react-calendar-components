@@ -2,4 +2,9 @@
 # react-cal-heatmap
 A calendar heatmap component for react similar to the GitHub contribution calendar.
 
-![Sample](https://cloud.githubusercontent.com/assets/9121900/16572763/54caa824-423a-11e6-9132-d8da2cf326b5.PNG)
+![cal-heatmap](https://cloud.githubusercontent.com/assets/9121900/16572763/54caa824-423a-11e6-9132-d8da2cf326b5.PNG)
+
+# circular progress bar
+A data visualization tool for metrics reporting or for showing progress
+
+![circular progress bar](https://cloud.githubusercontent.com/assets/9121900/16753273/7f43fbb0-47b6-11e6-8626-0546768fef92.png)
