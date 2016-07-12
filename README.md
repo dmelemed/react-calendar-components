@@ -1,4 +1,15 @@
 =======
+## How to run locally
+
+```
+git clone https://github.com/dmelemed/react-calendar-components.git
+npm install && npm start
+```
+
+Go to localhost:8080/{route} to see the different previews
+
+## Components
+
 # calendar heatmap
 A calendar heatmap component for react similar to the GitHub contribution calendar.
 
