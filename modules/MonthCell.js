@@ -17,6 +17,7 @@ export default function MonthCell(props) {
 
     let dayBoxesClasses = classNames({
         calendarBox: true,
+        monthViewDayCell : true,
         todayCalendarBox: today && day.isSame(today, 'day')
     });
 

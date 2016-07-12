@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default React.createClass({
-    render() {
-        return <div>Home</div>
+export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
     }
-});
+
+    render() {
+      return <div>Hello</div>;
+    }
+};

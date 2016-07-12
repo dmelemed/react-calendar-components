@@ -191,7 +191,6 @@ var HeatMap = React.createClass({
 
         return (
             <div>
-                <p>Hello, World</p>
                 <Chart height={height} width={width} margin={margin}>
                     <svg className="react-calendar-heatmap" x="0" y="0">
                         {title}
@@ -207,4 +206,4 @@ var HeatMap = React.createClass({
 });
 
 
-export { HeatMap };
+export default HeatMap;

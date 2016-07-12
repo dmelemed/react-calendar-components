@@ -1,5 +1,5 @@
 html {
-  font-family: "Open Sans";
+    font-family: "Open Sans";
 }
 
 .domain-background {
@@ -7,20 +7,25 @@ html {
 }
 
 .react-calendar-heapmap .graphLabel {
-  fill: 'black';
+    fill: black;
 }
 
 .calendarBox {
-  padding: 2px; /* 1 default */
+    padding: 2px; /* 1 default */
 }
 
 .todayCalendarBox {
-  background-color: #DDDDDD;
+    background-color: #DDDDDD;
 }
 
-table td:last-child{
-  width:100%;
+.monthViewDayCell {
+    height: 100px;
+    display: table-cell;
+    border: 1px solid #1a2a4f;
+    box-sizing: border-box;
+    vertical-align: top;
 }
+
 /*
  * react-calendar-heatmap styles
  *
@@ -28,25 +33,23 @@ table td:last-child{
  * The github and gitlab color scales are provided for reference.
  */
 
-
-
 .react-calendar-heatmap {
-  display: block;
+    display: block;
 }
 
 .react-calendar-heatmap text {
-  font-size: 10px;
-  fill: #aaa;
-}
-.react-calendar-heatmap text.graphLabel {
-  font-size: 8px;
-  fill: #aaa;
+    font-size: 10px;
+    fill: #aaa;
 }
 
+.react-calendar-heatmap text.graphLabel {
+    font-size: 8px;
+    fill: #aaa;
+}
 
 .react-calendar-heatmap rect:hover {
-  stroke: #555;
-  stroke-width: 1px;
+    stroke: #555;
+    stroke-width: 1px;
 }
 
 /*
@@ -54,11 +57,11 @@ table td:last-child{
  */
 
 .react-calendar-heatmap .color-empty {
-  fill: #eeeeee;
+    fill: #eeeeee;
 }
 
 .react-calendar-heatmap .color-filled {
-  fill: #8cc665;
+    fill: #8cc665;
 }
 
 /*
@@ -66,19 +69,23 @@ table td:last-child{
  */
 
 .react-calendar-heatmap .color-github-0 {
-  fill: #eeeeee;
+    fill: #eeeeee;
 }
+
 .react-calendar-heatmap .color-github-1 {
-  fill: #d6e685;
+    fill: #d6e685;
 }
+
 .react-calendar-heatmap .color-github-2 {
-  fill: #8cc665;
+    fill: #8cc665;
 }
+
 .react-calendar-heatmap .color-github-3 {
-  fill: #44a340;
+    fill: #44a340;
 }
+
 .react-calendar-heatmap .color-github-4 {
-  fill: #1e6823;
+    fill: #1e6823;
 }
 
 /*
@@ -86,18 +93,22 @@ table td:last-child{
  */
 
 .react-calendar-heatmap .color-gitlab-0 {
-  fill: #ededed;
+    fill: #ededed;
 }
+
 .react-calendar-heatmap .color-gitlab-1 {
-  fill: #acd5f2;
+    fill: #acd5f2;
 }
+
 .react-calendar-heatmap .color-gitlab-2 {
-  fill: #7fa8d1;
+    fill: #7fa8d1;
 }
+
 .react-calendar-heatmap .color-gitlab-3 {
-  fill: #49729b;
+    fill: #49729b;
 }
+
 .react-calendar-heatmap .color-gitlab-4 {
-  fill: #254e77;
+    fill: #254e77;
 }
 
