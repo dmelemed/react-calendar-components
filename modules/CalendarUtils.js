@@ -67,6 +67,28 @@ var calendarUtils = {
             else if (a.date < b.date) return -1;
             else return 0;
         });
+    },
+
+    indexByDate(data) {
+        var indexedData = [];
+        data.forEach((e) => {
+            indexedData[e.date] = e;
+        });
+        return indexedData;
+    },
+
+    getNumberOfWeeksInMonth(momentInMonth) {
+        let clonedDate = moment(momentInMonth),
+            first,
+            last;
+        first = clonedDate.startOf('month').week();
+        last = clonedDate.endOf('month').week();
+
+        // In case last week is in next year
+        if (first > last) {
+            last = first + last;
+        }
+        return last - first + 1;
     }
 };
 

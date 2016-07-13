@@ -34,14 +34,34 @@ html {
     color: #E46A68;
     text-align: center;
     font-size: 42px;
-    margin: 0 auto;.
+    padding: 20px;
+    margin: 0 auto;
 }
 
 .activityTitle {
     color: #E46A68;
     font-size: 24px;
+    margin-left: 20px;
 }
 
+.activityContainer {
+    padding: 10px;
+}
+.activityContainerOdd {
+    padding: 10px;
+    background-color: #4C4C4C;
+}
+
+hr.activityBreak {
+    display: block;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    background-color: inherit;
+}
 /*
  * react-calendar-heatmap styles
  *
@@ -58,7 +78,7 @@ html {
     fill: #aaa;
 }
 
-.react-calendar-heatmap text.graphLabel {
+.react-calendar-heatmap text.graphLabelLeft {
     font-size: 8px;
     fill: #aaa;
 }
@@ -66,6 +86,30 @@ html {
 .react-calendar-heatmap rect:hover {
     stroke: #555;
     stroke-width: 1px;
+}
+
+/*
+*
+*/
+
+.react-calendar-heatmap .heatmap-red-0 {
+    fill: #fceded;
+}
+
+.react-calendar-heatmap .heatmap-red-1 {
+    fill: #f6cdcc;
+}
+
+.react-calendar-heatmap .heatmap-red-2 {
+    fill: #f0acab;
+}
+
+.react-calendar-heatmap .heatmap-red-3 {
+    fill: #ea8b89;
+}
+
+.react-calendar-heatmap .heatmap-red-4 {
+    fill: #e46a68;
 }
 
 /*
