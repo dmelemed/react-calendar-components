@@ -1,6 +1,12 @@
 import moment from 'moment'
 
 var calendarUtils = {
+
+    compareElements(a, b) {
+        if (a.valueOf() < b.valueOf()) return -1;
+        if (a.valueOf() > b.valueOf()) return 1;
+        return 0;
+    },
     getNumberOfWeeksInMonth(dayInMonth){
         let sampleDay = moment(dayInMonth), first, last;
 

@@ -3,6 +3,7 @@ import d3 from 'd3'
 import moment from 'moment'
 import Chart from './Chart'
 import classNames from 'classnames'
+import calendarUtils from './CalendarUtils'
 
 
 // TODO: each domain should be a separate svg
@@ -37,13 +38,7 @@ var HeatMap = React.createClass({
         console.log(data[0].date.valueOf());
 
         // SORT DATA
-        function compareElements(a, b) {
-            if (a.date.valueOf() < b.date.valueOf()) return -1;
-            if (a.date.valueOf() > b.date.valueOf()) return 1;
-            return 0;
-        }
-
-        var sorted = data.sort(compareElements);
+        var sorted = data.sort((a, b) => { return calendarUtils.compareElements(a.date, b.date); });
         console.log('Sorted', sorted);
 
         // GENERATE DOMAIN / SUBDOMAIN KEYS
