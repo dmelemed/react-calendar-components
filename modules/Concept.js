@@ -42,10 +42,11 @@ export default class Concept extends React.Component {
 
         return (
             <div ref="wrapper">
-                <h1 style={{textAlign: 'center', fontSize: '40px'}}>
+                <h1 id="conceptTitle">
                     {title}
                 </h1>
                 <div>
+                    <h1 className="activityTitle">Activity 1</h1>
                     <HeatMap
                         width={this.state.width}
                         height={this.state.height}

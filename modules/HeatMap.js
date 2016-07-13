@@ -26,7 +26,7 @@ var HeatMap = React.createClass({
 
         // CREATE DATA
         let data = [];
-        for (var i = 0; i < 186; i++) {
+        for (var i = 0; i < 196; i++) {
             // if (i !== 25) {
             data.push({
                 date: moment().subtract(i, 'days'),
@@ -191,7 +191,7 @@ var HeatMap = React.createClass({
 
         return (
             <div>
-                <Chart height={height} width={width} margin={margin}>
+                <Chart height={height} width={width} margin={margin} viewBox={'0 0 ' + width + ' ' + height}>
                     <svg className="react-calendar-heatmap" x="0" y="0">
                         {title}
                         {domains}

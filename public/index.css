@@ -26,6 +26,22 @@ html {
     vertical-align: top;
 }
 
+.conceptPage {
+    background-color: #3F3F3F;
+}
+
+#conceptTitle {
+    color: #E46A68;
+    text-align: center;
+    font-size: 42px;
+    margin: 0 auto;.
+}
+
+.activityTitle {
+    color: #E46A68;
+    font-size: 24px;
+}
+
 /*
  * react-calendar-heatmap styles
  *

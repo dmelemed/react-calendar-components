@@ -53,6 +53,14 @@ var calendarUtils = {
             daysByWeek.push(this.getDaysOfWeek(1, year + 1));
         }
         return daysByWeek;
+    },
+
+    getEventsOnDate(events, moment) {
+        return events.filter((event) => moment.isSame(event.date, 'day')).sort((a, b) => {
+            if (a.date > b.date) return 1;
+            else if (a.date < b.date) return -1;
+            else return 0;
+        });
     }
 };
 

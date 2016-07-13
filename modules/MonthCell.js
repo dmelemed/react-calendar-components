@@ -5,7 +5,6 @@ import classNames from 'classnames';
 export default function MonthCell(props) {
 
     const { day, today, monthIndex, style, eventStyle, events} = props;
-    console.log(props);
 
     let eventBoxes = events.map((event, eventIndex) => {
         let eventTime = moment(event.date).format('h:mm a')

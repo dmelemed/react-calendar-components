@@ -4,12 +4,14 @@ import moment from 'moment';
 import classNames from 'classnames';
 import calendarUtils from './CalendarUtils';
 import MonthCell from './MonthCell';
+import events from '../mock-data/events';
 
 export const Calendar = React.createClass({
 
     propTypes: {},
 
     getInitialState() {
+        console.log('Events', events);
         return {
             today: moment(),
             date: moment().startOf('month').add(10, 'day'),
@@ -22,6 +24,8 @@ export const Calendar = React.createClass({
     },
 
     render() {
+        console.log('state', this.state);
+
         const styles = {
             dayBoxStyle: {
 
@@ -59,61 +63,9 @@ export const Calendar = React.createClass({
 
         console.log(daysByWeekInMonth);
 
-        const events = [{
-            date: date.toDate(),
-            title: 'Doing things',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(1, 'day').toDate(),
-            title: 'Going to gym',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(1, 'day').subtract(4, 'hour').toDate(),
-            title: 'Going to work',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(1, 'day').subtract(1, 'hour').toDate(),
-            title: 'Cooking',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(7, 'day').toDate(),
-            title: 'Busy work',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(5, 'day').toDate(),
-            title: 'Busy work',
-            calendarId: '1'
-        }, {
-            date: date.clone().subtract(1, 'day').toDate(),
-            title: 'Busy work',
-            calendarId: '1'
-        }, {
-            date: date.clone().subtract(1, 'day').toDate(),
-            title: 'Busy work',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(15, 'day').toDate(),
-            title: 'Busy work',
-            calendarId: '1'
-        }, {
-            date: date.clone().add(15, 'day').toDate(),
-            title: null,
-            calendarId: '1'
-        }];
-
-
-        function getEventsOnDate(moment) {
-            return events.filter((event) => moment.isSame(event.date, 'day')).sort((a, b) => {
-                console.log(a, b);
-                if (a.date > b.date) return 1;
-                else if (a.date < b.date) return -1;
-                else return 0;
-            });
-        }
-
         let dayBoxes = daysByWeekInMonth.map((week, weekIndex) => {
             let daysInWeekBoxes = week.map((day, dayIndex) => {
-                let eventsOnDay = getEventsOnDate(day);
+                let eventsOnDay = calendarUtils.getEventsOnDate(events, day);
                 return (
                     <MonthCell key={dayIndex} day={day} today={this.state.today} style={styles.dayBoxStyle} eventStyle={styles.eventStyle} monthIndex={month} events={eventsOnDay}/>
                 );
