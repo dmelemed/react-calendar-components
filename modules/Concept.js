@@ -13,8 +13,9 @@ import CircularProgressBar from './CircularProgressBar'
 //     footer: node
 // }
 
-export default class Concept extends React.Component {
+// TODO: create activity module
 
+export default class Concept extends React.Component {
 
     constructor(props) {
         super(props);
@@ -51,7 +52,6 @@ export default class Concept extends React.Component {
 
         return (
             <div ref="wrapper">
-
                 <h1 id="conceptTitle" style={{}}>
                     {title}
                 </h1>
@@ -71,16 +71,42 @@ export default class Concept extends React.Component {
                         classForValue={classForValue}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
                     />
-                    <CircularProgressBar minValue={0}
-                                         maxValue={100}
-                                         value={55} 
-                                         width="150px"
-                                         progressFill="#E46A68"
-                                         containerStyle={{display: 'inline-block', marginRight: '40px', verticalAlign: 'top', float: 'right'}}
-                    />
+                    <div style={{display: 'inline-table', float: 'right', height: '200px'}}>
+                        <div style={{display: 'table-cell', verticalAlign: 'middle'}}>
+                            <CircularProgressBar minValue={0}
+                                                 maxValue={100}
+                                                 value={66}
+                                                 width="150px"
+                                                 progressFill="#E46A68"
+                                                 containerStyle={{margin: '20px'}}
+                                                 bottomLabel={{text: 'This week'}}
+                            />
+                        </div>
+                        <div style={{display: 'table-cell', verticalAlign: 'middle'}}>
+                            <CircularProgressBar minValue={0}
+                                                 maxValue={100}
+                                                 value={46}
+                                                 width="150px"
+                                                 progressFill="#f0acab"
+                                                 containerStyle={{margin: '20px'}}
+                                                 bottomLabel={{text: 'Last week'}}
+                            />
+                        </div>
+                        <div style={{display: 'table-cell', verticalAlign: 'middle', textAlign: 'center'}}>
+                            <CircularProgressBar minValue={0}
+                                                 maxValue={100}
+                                                 value={35}
+                                                 width="150px"
+                                                 progressFill="#f6cdcc"
+                                                 containerStyle={{margin: '20px'}}
+                                                 bottomLabel={{text: 'Two weeks ago'}}
+                            />
+                        </div>
+
+                    </div>
                 </div>
                 <hr className="activityBreak"/>
-                <div className="activityContainerOdd">
+                <div className="activityContainer activityContainerOdd">
 
                     <h1 className="activityTitle">Sleep</h1>
                     <HeatMap
@@ -115,6 +141,7 @@ export default class Concept extends React.Component {
                     />
                 </div>
             </div>
-        );
+        )
+            ;
     }
 };

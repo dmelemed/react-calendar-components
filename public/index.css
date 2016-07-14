@@ -45,10 +45,10 @@ html {
 }
 
 .activityContainer {
+    background-color: #3F3F3F;
     padding: 10px;
 }
-.activityContainerOdd {
-    padding: 10px;
+.activityContainer.activityContainerOdd {
     background-color: #4C4C4C;
 }
 

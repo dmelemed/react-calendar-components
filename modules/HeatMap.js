@@ -27,19 +27,33 @@ var HeatMap = React.createClass({
     },
 
     getDefaultProps() {
+
+        // CREATE DATA
+        const data = [],
+            duration = 195;
+        for (var i = 0; i < duration; i++) {
+            data.push({
+                date: moment().subtract(i, 'days'),
+                value: Math.floor(Math.random() * 5)
+            });
+        }
+        console.log('Unsorted data', data);
+
         return {
             boxWidth: 10,
             boxHeight: 10,
             domainGutter: 2,
             subDomainGutter: 2,
             domain: 'month',
-            subDomain: 'day'
+            subDomain: 'day',
+            data: data
         };
     },
 
     render() {
+        //(minDate && maxDate) ? minDate.diff(maxDate, 'days')
         console.log('Rending heatmap');
-        let {containerStyle, classForValue, margin, minDate, maxDate, width, height, domainGutter, subDomainGutter, boxHeight, boxWidth, viewBox, preserveAspectRatio, children} = this.props;
+        let {data, containerStyle, classForValue, margin, minDate, maxDate, width, height, domainGutter, subDomainGutter, boxHeight, boxWidth} = this.props;
         console.log('HeatMap props', this.props);
 
         // TODO: move to heatmap utils?
@@ -55,16 +69,6 @@ var HeatMap = React.createClass({
         const boxesPerColumn = getBoxesPerColumn(domain),
             bottomLabelMargin = 12; // margin between bottom of data boxes and bottom label
 
-        // CREATE DATA
-        const data = [],
-            duration = (minDate && maxDate) ? minDate.diff(maxDate, 'days') : 195;
-        for (var i = 0; i < duration; i++) {
-            data.push({
-                date: moment().subtract(i, 'days'),
-                value: Math.floor(Math.random() * 5)
-            });
-        }
-        console.log('Unsorted data', data);
 
         // SORT DATA
         let sorted = data.sort((a, b) => {
@@ -79,10 +83,6 @@ var HeatMap = React.createClass({
             subDomain = 'day';
 
         console.log('Date range', startKey, endKey);
-
-        function isInSameDomain(currentKey, otherKey, domain) {
-            return moment(currentKey).isSame(moment(otherKey), domain);
-        }
 
         // var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
