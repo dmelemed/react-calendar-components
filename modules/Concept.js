@@ -42,12 +42,20 @@ export default class Concept extends React.Component {
     render() {
         const {title} = this.props;
 
-        const classForValue = {
+        const redHeatmapClasses = {
             0: 'heatmap-red-0',
             1: 'heatmap-red-1',
             2: 'heatmap-red-2',
             3: 'heatmap-red-3',
             4: 'heatmap-red-4'
+        };
+
+        const greenHeatmapClasses = {
+            0: 'heatmap-green-0',
+            1: 'heatmap-green-1',
+            2: 'heatmap-green-2',
+            3: 'heatmap-green-3',
+            4: 'heatmap-green-4'
         };
 
         return (
@@ -57,7 +65,7 @@ export default class Concept extends React.Component {
                 </h1>
                 <hr className="activityBreak"/>
 
-                <div className="activityContainer">
+                <div style={{display: 'inline-block'}} className="activityContainer">
                     <h1 className="activityTitle">Exercise</h1>
                     <HeatMap
                         width={800}
@@ -68,17 +76,17 @@ export default class Concept extends React.Component {
                         }}
                         boxWidth={20}
                         boxHeight={20}
-                        classForValue={classForValue}
+                        classForValue={greenHeatmapClasses}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
                     />
-                    <div style={{display: 'inline-table', float: 'right', height: '200px'}}>
+                    <div style={{display: 'inline-table', padding: 'auto 10px', height: '200px'}}>
                         <div style={{display: 'table-cell', verticalAlign: 'middle'}}>
                             <CircularProgressBar minValue={0}
                                                  maxValue={100}
                                                  value={66}
                                                  width="150px"
                                                  progressFill="#E46A68"
-                                                 containerStyle={{margin: '20px'}}
+                                                 containerStyle={{margin: '10px'}}
                                                  bottomLabel={{text: 'This week'}}
                             />
                         </div>
@@ -88,7 +96,7 @@ export default class Concept extends React.Component {
                                                  value={46}
                                                  width="150px"
                                                  progressFill="#f0acab"
-                                                 containerStyle={{margin: '20px'}}
+                                                 containerStyle={{margin: '10px'}}
                                                  bottomLabel={{text: 'Last week'}}
                             />
                         </div>
@@ -98,16 +106,14 @@ export default class Concept extends React.Component {
                                                  value={35}
                                                  width="150px"
                                                  progressFill="#f6cdcc"
-                                                 containerStyle={{margin: '20px'}}
+                                                 containerStyle={{margin: '10px'}}
                                                  bottomLabel={{text: 'Two weeks ago'}}
                             />
                         </div>
-
                     </div>
                 </div>
                 <hr className="activityBreak"/>
                 <div className="activityContainer activityContainerOdd">
-
                     <h1 className="activityTitle">Sleep</h1>
                     <HeatMap
                         width={this.state.width}
@@ -118,7 +124,7 @@ export default class Concept extends React.Component {
                         }}
                         boxWidth={20}
                         boxHeight={20}
-                        classForValue={classForValue}
+                        classForValue={greenHeatmapClasses}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
                     />
                 </div>
@@ -136,7 +142,7 @@ export default class Concept extends React.Component {
                         }}
                         boxWidth={20}
                         boxHeight={20}
-                        classForValue={classForValue}
+                        classForValue={greenHeatmapClasses}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
                     />
                 </div>

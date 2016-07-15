@@ -28,33 +28,35 @@ export default function CircularProgressBar(props) {
         bottomLabelDOM;
 
     if (topLabel) {
-        topLabelDOM = (<text x={centerX}
-                                   y="0"
-                                   textAnchor="middle"
-                                   alignmentBaseline="hanging"
-                                   fill="white"
+        topLabelDOM = (<text className="cpbTopText"
+                             x={centerX}
+                             y="0"
+                             textAnchor="middle"
+                             alignmentBaseline="hanging"
+                             fill="white"
         >{topLabel.text}
         </text>);
     }
 
     if (bottomLabel) {
-        bottomLabelDOM = (<text x={centerX}
-                                      y="100"
-                                      textAnchor="middle"
-                                      alignmentBaseline="baseline"
-                                      fill="white"
+        bottomLabelDOM = (<text className="cpbBottomText" x={centerX}
+                                y="100"
+                                textAnchor="middle"
+                                alignmentBaseline="baseline"
+                                fill="white"
         >{bottomLabel.text}
         </text>);
     }
 
 
     return (
-        <div
+        <div className="cpbContainer"
             style={Object.assign({ width: width ? width : height, height: height ? height : width}, containerStyle)}>
             <svg id="a" viewBox="0 0 100 100" width="100%" height="100%">
                 {topLabelDOM}
                 {bottomLabelDOM}
-                <circle cx={centerX}
+                <circle className="cpbFill"
+                        cx={centerX}
                         cy={centerY}
                         r={modifiedRadius}
                         fill="none"
@@ -63,7 +65,8 @@ export default function CircularProgressBar(props) {
                         strokeDasharray={(circumference * progress / 100) + ', ' + (circumference * (1 - progress / 100))}
                         strokeWidth={strokeWidth}
                 />
-                <text x={centerX}
+                <text className="cpbProgressText"
+                      x={centerX}
                       y={centerY}
                       fill={textFill ? textFill : "white"}
                       fontSize={textSize ? textSize : "12px"}
