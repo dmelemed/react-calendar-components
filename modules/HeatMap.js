@@ -4,6 +4,7 @@ import moment from 'moment'
 import Chart from './Chart'
 import classNames from 'classnames'
 import calendarUtils from './CalendarUtils'
+import lightThemeGreen from '../styles/themes/lightThemeGreen'
 
 
 // TODO: each domain should be a separate svg
@@ -23,14 +24,15 @@ var HeatMap = React.createClass({
     propTypes: {
         boxWidth: React.PropTypes.number,
         boxHeight: React.PropTypes.number,
-        classes: React.PropTypes.object
+        classes: React.PropTypes.object,
+        theme: React.PropTypes.object
     },
 
     getDefaultProps() {
 
         // CREATE DATA
         const data = [],
-            duration = 195;
+            duration = 197;
         for (var i = 0; i < duration; i++) {
             data.push({
                 date: moment().subtract(i, 'days'),
@@ -53,7 +55,20 @@ var HeatMap = React.createClass({
     render() {
         //(minDate && maxDate) ? minDate.diff(maxDate, 'days')
         console.log('Rending heatmap');
-        let {data, containerStyle, classForValue, margin, minDate, maxDate, width, height, domainGutter, subDomainGutter, boxHeight, boxWidth} = this.props;
+        let {data,
+            containerStyle,
+            classForValue,
+            margin,
+            minDate,
+            maxDate,
+            width,
+            height,
+            domainGutter,
+            subDomainGutter,
+            boxHeight,
+            boxWidth,
+            theme
+        } = this.props;
         console.log('HeatMap props', this.props);
 
         // TODO: move to heatmap utils?
@@ -146,10 +161,11 @@ var HeatMap = React.createClass({
                     // console.log(column, e.date.month());
                     let x = (boxWidth + subDomainGutter) * column;
                     // let boxClasses = classNames(`color-github-${e.value}`);
-                    const boxClasses = classNames(classForValue[e.value] || '');
+                    const boxClasses = classNames(classForValue ? classForValue[e.value] : '');
+                    const boxStyles = theme ? theme.heatmapStyles[e.value] : {};
                     return (
                         <g onClick={() => { alert(e.date.toString()); }} key={index}>
-                            <rect className={boxClasses} width={boxWidth} height={boxHeight} x={x} y={y}/>
+                            <rect className={boxClasses} style={boxStyles} width={boxWidth} height={boxHeight} x={x} y={y}/>
                         </g>
                     );
                 } else {

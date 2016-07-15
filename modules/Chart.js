@@ -4,8 +4,8 @@ import moment from 'moment';
 
 var Chart = React.createClass({
     propTypes: {
-        height: React.PropTypes.number.isRequired,
-        width: React.PropTypes.number.isRequired,
+        height: React.PropTypes.string.isRequired,
+        width: React.PropTypes.string.isRequired,
         margin: React.PropTypes.shape({
             top: React.PropTypes.number,
             bottom: React.PropTypes.number,

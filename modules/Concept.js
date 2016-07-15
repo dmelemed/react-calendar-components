@@ -4,6 +4,7 @@ import moment from 'moment';
 import HeatMap from './HeatMap';
 import classNames from 'classnames';
 import CircularProgressBar from './CircularProgressBar'
+import lightThemeGreen from '../styles/themes/lightThemeGreen'
 
 // const {element, node, string} = PropTypes
 
@@ -76,8 +77,8 @@ export default class Concept extends React.Component {
                         }}
                         boxWidth={20}
                         boxHeight={20}
-                        classForValue={greenHeatmapClasses}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
+                        theme={lightThemeGreen}
                     />
                     <div style={{display: 'inline-table', padding: 'auto 10px', height: '200px'}}>
                         <div style={{display: 'table-cell', verticalAlign: 'middle'}}>
@@ -124,8 +125,8 @@ export default class Concept extends React.Component {
                         }}
                         boxWidth={20}
                         boxHeight={20}
-                        classForValue={greenHeatmapClasses}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
+                        theme={lightThemeGreen}
                     />
                 </div>
 
@@ -142,8 +143,8 @@ export default class Concept extends React.Component {
                         }}
                         boxWidth={20}
                         boxHeight={20}
-                        classForValue={greenHeatmapClasses}
                         containerStyle={{margin: '20px', display: 'inline-block'}}
+                        theme={lightThemeGreen}
                     />
                 </div>
             </div>

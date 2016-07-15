@@ -103,51 +103,51 @@ hr.activityBreak {
     stroke-width: 1px;
 }
 
-/*
-* RED COLOR SCALE
-*/
+/*!**/
+/** RED COLOR SCALE*/
+/**!*/
 
-.react-calendar-heatmap .heatmap-red-0 {
-    fill: #fceded;
-}
+/*.react-calendar-heatmap .heatmap-red-0 {*/
+    /*fill: #fceded;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-red-1 {
-    fill: #f6cdcc;
-}
+/*.react-calendar-heatmap .heatmap-red-1 {*/
+    /*fill: #f6cdcc;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-red-2 {
-    fill: #f0acab;
-}
+/*.react-calendar-heatmap .heatmap-red-2 {*/
+    /*fill: #f0acab;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-red-3 {
-    fill: #ea8b89;
-}
+/*.react-calendar-heatmap .heatmap-red-3 {*/
+    /*fill: #ea8b89;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-red-4 {
-    fill: #e46a68;
-}
+/*.react-calendar-heatmap .heatmap-red-4 {*/
+    /*fill: #e46a68;*/
+/*}*/
 
 
-/*
-* RED COLOR SCALE
-*/
+/*!**/
+/** RED COLOR SCALE*/
+/**!*/
 
-.react-calendar-heatmap .heatmap-green-0 {
-    fill: #ebffeb;
-}
+/*.react-calendar-heatmap .heatmap-green-0 {*/
+    /*fill: #ebffeb;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-green-1 {
-    fill: #d8ffd8;
-}
+/*.react-calendar-heatmap .heatmap-green-1 {*/
+    /*fill: #d8ffd8;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-green-2 {
-    fill: #b1ffb1;
-}
+/*.react-calendar-heatmap .heatmap-green-2 {*/
+    /*fill: #b1ffb1;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-green-3 {
-    fill: #62ff62;
-}
+/*.react-calendar-heatmap .heatmap-green-3 {*/
+    /*fill: #62ff62;*/
+/*}*/
 
-.react-calendar-heatmap .heatmap-green-4 {
-    fill: #14ff14;
-}
+/*.react-calendar-heatmap .heatmap-green-4 {*/
+    /*fill: #14ff14;*/
+/*}*/
