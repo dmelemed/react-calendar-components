@@ -7,6 +7,7 @@ import ConceptPage from './ConceptPage'
 import Home from './Home'
 import Clock from './Clock'
 import Hypnosis from './Hypnosis'
+import PieChart from './PieChart'
 
 // <IndexRoute component={App}/>
 
@@ -19,6 +20,7 @@ module.exports = (
             <Route path="/heatmap-cal" component={HeatMap}/>
             <Route path="/clock" component={Clock}/>
             <Route path="/hypno" component={Hypnosis}/>
+            <Route path="/pie" component={PieChart}/>
         </Route>
     </Router>
 )
