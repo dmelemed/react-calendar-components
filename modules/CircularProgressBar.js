@@ -5,15 +5,43 @@ import * as d3 from 'd3';
 
 export default function CircularProgressBar(props) {
 
-    const {topLabel, bottomLabel, minValue, maxValue, value, width, height, innerRadius, outerRadius, progressFill, textSize, textFill, containerStyle, labelTopFontSize} = props,
+    function getProgressFillByProgress(progressFillByProgress, progress) {
+        for (let rangeMax in progressFillByProgress) {
+            if (progress < parseInt(rangeMax)) {
+                console.log(progressFillByProgress[rangeMax].fill);
+                return progressFillByProgress[rangeMax].fill;
+            }
+        }
+        return '#000000';
+    }
+
+    const {
+            topLabel,
+            bottomLabel,
+            minValue,
+            maxValue,
+            value,
+            width,
+            height,
+            innerRadius,
+            outerRadius,
+            progressFill,
+            progressFillByProgress,
+            textSize,
+            textFill,
+            containerStyle,
+            labelTopFontSize
+        } = props,
         progress = Math.round((value - minValue) / (maxValue - minValue) * 100),
         radiusRatio = (innerRadius && outerRadius) ? innerRadius / outerRadius : 0.8,
         strokeWidth = 45 * (1 - radiusRatio),
         modifiedRadius = 35 - strokeWidth,
         circumference = 2 * Math.PI * modifiedRadius,
         centerX = 50,
-        centerY = 50;
+        centerY = 50,
+        calculatedProgressFill = progressFillByProgress ? getProgressFillByProgress(progressFillByProgress, progress) : progressFill;
 
+    console.log('Fills',progressFillByProgress);
     // console.log(d3);
     // let arc = d3.arc();
     // let d = arc({
@@ -51,7 +79,7 @@ export default function CircularProgressBar(props) {
 
     return (
         <div className="cpbContainer"
-            style={Object.assign({ width: width ? width : height, height: height ? height : width}, containerStyle)}>
+             style={Object.assign({ width: width ? width : height, height: height ? height : width}, containerStyle)}>
             <svg id="a" viewBox="0 0 100 100" width="100%" height="100%">
                 {topLabelDOM}
                 {bottomLabelDOM}
@@ -60,7 +88,7 @@ export default function CircularProgressBar(props) {
                         cy={centerY}
                         r={modifiedRadius}
                         fill="none"
-                        stroke={progressFill}
+                        stroke={calculatedProgressFill}
                         strokeDashoffset={circumference / 4}
                         strokeDasharray={(circumference * progress / 100) + ', ' + (circumference * (1 - progress / 100))}
                         strokeWidth={strokeWidth}

@@ -27,9 +27,7 @@ export const Calendar = React.createClass({
         console.log('state', this.state);
 
         const styles = {
-            dayBoxStyle: {
-
-            },
+            dayBoxStyle: {},
             weekRowStyle: {},
             dayOfWeekStyle: {
                 height: '25px',
@@ -67,7 +65,8 @@ export const Calendar = React.createClass({
             let daysInWeekBoxes = week.map((day, dayIndex) => {
                 let eventsOnDay = calendarUtils.getEventsOnDate(events, day);
                 return (
-                    <MonthCell key={dayIndex} day={day} today={this.state.today} style={styles.dayBoxStyle} eventStyle={styles.eventStyle} monthIndex={month} events={eventsOnDay}/>
+                    <MonthCell key={dayIndex} day={day} today={this.state.today} style={styles.dayBoxStyle}
+                               eventStyle={styles.eventStyle} monthIndex={month} events={eventsOnDay}/>
                 );
             });
             return <tr style={styles.weekRowStyle} key={weekIndex}>{daysInWeekBoxes}</tr>;
@@ -83,7 +82,7 @@ export const Calendar = React.createClass({
         return (
             <div>
                 <h1>Calendar</h1>
-                <div style={{float: 'left'}}>
+                <div style={{display: 'inline-block', width: '33%', textAlign: 'left'}}>
                     <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary"
                             type="button"
                             onClick={this.handleClick.bind(this, 'L')}>&lt;</button>
@@ -95,9 +94,12 @@ export const Calendar = React.createClass({
                             onClick={this.handleClick.bind(this, 'TODAY')}>Today
                     </button>
                 </div>
-                <div style={{textAlign: 'center'}}>
-                    <h2 style={{display: 'inline-block'}}>{date.format('MMMM YYYY')}</h2>
+                <div style={{display: 'inline-block', width: '33%', textAlign: 'center'}}>
+                    <h2>{date.format('MMMM YYYY')}</h2>
                 </div>
+                <div style={{width: '33%'}}>
+                </div>
+
                 <table style={styles.tableStyle}>
                     <thead>
                     <tr>{dayOfWeekLabels}</tr>
