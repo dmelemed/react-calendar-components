@@ -2,7 +2,7 @@ import React from 'react'
 import * as d3 from 'd3'
 import moment from 'moment'
 
-export default class PieChart extends React.Component {
+export default class Clock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
