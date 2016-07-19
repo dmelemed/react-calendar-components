@@ -72,7 +72,7 @@ export default class Clock extends React.Component {
                 fontSize="24"
                 fontWeight="bold"
             >
-                BWF Peace Clock
+                Clock
             </text>);
 
         const hours = [...Array(24)].map(() => 1);
