@@ -4,6 +4,7 @@ import moment from 'moment';
 import classNames from 'classnames';
 import calendarUtils from './CalendarUtils';
 import MonthCell from './MonthCell';
+import MonthView from './calendarViews/MonthView';
 import events from '../mock-data/events';
 
 export const Calendar = React.createClass({
@@ -15,7 +16,7 @@ export const Calendar = React.createClass({
         return {
             today: moment(),
             date: moment().startOf('month').add(10, 'day'),
-            view: 'MONTHLY'
+            view: 'month'
         };
     },
 
@@ -23,64 +24,72 @@ export const Calendar = React.createClass({
         // PUT AJAX CALL HERE
     },
 
-    render() {
-        console.log('state', this.state);
+    updateView(view) {
+        console.log('Setting view to', view);
+        if (this.state.view != view) {
+            this.setState({
+                view: view
+            });
+        }
+    },
 
-        const styles = {
-            dayBoxStyle: {},
-            weekRowStyle: {},
-            dayOfWeekStyle: {
-                height: '25px',
-                display: 'table-cell',
-                borderStyle: 'solid',
-                borderWidth: '1px',
-                borderColor: '#1a2a4f',
-                boxSizing: 'border-box',
-                textAlign: 'center',
-                verticalAlign: 'top'
+    render() {
+
+        console.log('state', this.state);
+        console.log('Date', this.state.date);
+
+        const date = this.state.date;
+
+        const calendarView = {
+            MONTHLY: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
+            WEEKLY: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
+            DAILY: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
+            AGENDA: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
+        };
+
+        const views = {
+            MONTH: 'month',
+            WEEK: 'week',
+            DAY: 'day',
+            AGENDA: 'agenda'
+        }
+
+        const VIEWS = {
+            [views.MONTH]: {
+                name: 'MONTH',
+                calendarView: calendarView.MONTHLY
             },
-            tableStyle: {
-                width: '100%',
-                borderSpacing: '0px',
-                tableLayout: 'fixed'
+            [views.WEEK]: {
+                name: 'WEEK',
+                calendarView: calendarView.WEEKLY
             },
-            eventStyle: {
-                fontWeight: 'bold',
-                fontSize: '12px',
-                color: '#0074D9'
+            [views.DAY]: {
+                name: 'DAY',
+                calendarView: calendarView.DAILY
+            },
+            [views.AGENDA]: {
+                name: 'AGENDA',
+                calendarView: calendarView.AGENDA
             }
         };
 
-        console.log('Date', this.state.date);
-
-        const date = this.state.date,
-            month = date.month(),
-            year = date.year(),
-            shortenedDaysOfWeek = moment.weekdaysShort(),
-            daysByWeekInMonth = calendarUtils.getDaysByWeekInMonth(month, year);
-
-        console.log(daysByWeekInMonth);
-
-        let dayBoxes = daysByWeekInMonth.map((week, weekIndex) => {
-            let daysInWeekBoxes = week.map((day, dayIndex) => {
-                let eventsOnDay = calendarUtils.getEventsOnDate(events, day);
-                return (
-                    <MonthCell key={dayIndex} day={day} today={this.state.today} style={styles.dayBoxStyle}
-                               eventStyle={styles.eventStyle} monthIndex={month} events={eventsOnDay}/>
-                );
-            });
-            return <tr style={styles.weekRowStyle} key={weekIndex}>{daysInWeekBoxes}</tr>;
-        });
-
-
-        let dayOfWeekLabels = shortenedDaysOfWeek.map((dayName, index) => {
+        const viewButtons = Object.keys(views).map((key, i) => {
+            const view = views[key];
             return (
-                <th key={index} style={styles.dayOfWeekStyle}>{dayName}</th>
+                <button
+                    key={i}
+                    style={{display: 'inline-block', margin: '10px'}}
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={this.updateView.bind(null, view)}
+                >
+                    {view.toUpperCase()}
+                </button>
             );
         });
 
         return (
-            <div>
+            <div style={{height: '100%'}}>
                 <h1>Calendar</h1>
                 <div style={{display: 'inline-block', width: '33%', textAlign: 'left'}}>
                     <button style={{display: 'inline-block', margin: '10px'}} className="btn btn-primary"
@@ -94,18 +103,15 @@ export const Calendar = React.createClass({
                             onClick={this.handleClick.bind(this, 'TODAY')}>Today
                     </button>
                 </div>
-                <div style={{display: 'inline-block', width: '33%', textAlign: 'center'}}>
+                <div style={{display: 'inline-block', width: '33%', textAlign: 'center', verticalAlign: 'bottom'}}>
                     <h2>{date.format('MMMM YYYY')}</h2>
                 </div>
-                <div style={{width: '33%'}}>
+                <div style={{display: 'inline-block', width: '33%', verticalAlign: 'bottom'}}>
+                    <div style={{float: 'right'}}>
+                        {viewButtons}
+                    </div>
                 </div>
-
-                <table style={styles.tableStyle}>
-                    <thead>
-                    <tr>{dayOfWeekLabels}</tr>
-                    </thead>
-                    <tbody>{dayBoxes}</tbody>
-                </table>
+                {VIEWS[this.state.view].calendarView}
             </div>
         );
     },
@@ -113,11 +119,11 @@ export const Calendar = React.createClass({
     handleClick: function (action) {
         if (action === 'L') {
             this.setState({
-                date: this.state.date.subtract(1, 'month')
+                date: this.state.date.clone().subtract(1, 'month')
             });
         } else if (action === 'R') {
             this.setState({
-                date: this.state.date.add(1, 'month')
+                date: this.state.date.clone().add(1, 'month')
             });
         } else if (action == 'TODAY') {
             this.setState({
