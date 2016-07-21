@@ -1,12 +1,9 @@
 import React from 'react';
-import d3 from 'd3';
 import moment from 'moment';
 import classNames from 'classnames';
-import calendarUtils from './CalendarUtils';
-import MonthCell from './MonthCell';
 import MonthView from './calendarViews/MonthView';
 import events from '../mock-data/events';
-
+import WeekView from './calendarViews/WeekView';
 export const Calendar = React.createClass({
 
     propTypes: {},
@@ -42,9 +39,9 @@ export const Calendar = React.createClass({
 
         const calendarView = {
             MONTHLY: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
-            WEEKLY: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
+            WEEKLY: <WeekView date={this.state.date} today={this.state.today} events={events}/>,
             DAILY: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
-            AGENDA: <MonthView date={this.state.date} today={this.state.today} events={events}/>,
+            AGENDA: <MonthView date={this.state.date} today={this.state.today} events={events}/>
         };
 
         const views = {
@@ -52,7 +49,7 @@ export const Calendar = React.createClass({
             WEEK: 'week',
             DAY: 'day',
             AGENDA: 'agenda'
-        }
+        };
 
         const VIEWS = {
             [views.MONTH]: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as d3 from 'd3';
 import calendarUtils from '../CalendarUtils';
-import MonthCell from '../MonthCell';
+import MonthCell from './MonthCell';
 import moment from 'moment';
 import events from '../../mock-data/events';
 
