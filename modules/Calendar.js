@@ -13,7 +13,7 @@ export const Calendar = React.createClass({
         return {
             today: moment(),
             date: moment().startOf('month').add(10, 'day'),
-            view: 'month'
+            view: 'week'
         };
     },
 
