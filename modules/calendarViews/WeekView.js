@@ -57,6 +57,12 @@ const WeekView = React.createClass({
                 position: 'relative',
                 borderRightStyle: 'solid',
                 borderRightWidth: '1px'
+            },
+            eventBox: {
+                width: '94%',
+                position: 'absolute',
+                left: '3%',
+                backgroundColor: '#2ECC40'
             }
         };
 
@@ -72,10 +78,33 @@ const WeekView = React.createClass({
             );
         });
 
+
+        const events = [{
+            title: 'Daniel\'s event',
+            day: daysInWeek[0],
+            startTime: daysInWeek[0].hour(14).minute('0'),
+            duration: 60
+        }];
         const dayBoxes = daysInWeek.map((day, index) => {
+            console.log('On day', day);
+            const eventBoxes = events.filter((event)=> {
+                return event.day == day;
+            }).map((event, index)=> {
+                console.log(event);
+                const eventBoxStyle = {
+                    height: 8 / 60 * event.duration + '%',
+                    top: 8 * (event.startTime.hour() + event.startTime.minute()/60) + '%'
+                };
+                return (
+                    <div
+                        style={Object.assign(styles.eventBox, eventBoxStyle)}>{event.title}</div>
+                );
+            });
+
             return (
                 <td key={index} style={styles.dayBoxStyle}>
                     {hourMarkers}
+                    {eventBoxes}
                 </td>
             );
         });
@@ -95,7 +124,8 @@ const WeekView = React.createClass({
                     <tr>{dayOfWeekLabels}</tr>
                     </thead>
                     <tbody>
-                    <tr>{dayBoxes}</tr>
+                    <tr>{dayBoxes}
+                    </tr>
                     </tbody>
                 </table>
 
