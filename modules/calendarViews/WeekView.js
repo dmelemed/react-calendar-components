@@ -82,7 +82,7 @@ const WeekView = React.createClass({
         const events = [{
             title: 'Daniel\'s event',
             day: daysInWeek[0],
-            startTime: daysInWeek[0].hour(14).minute('0'),
+            startTime: daysInWeek[0].hour(9).minute(30),
             duration: 60
         }];
         const dayBoxes = daysInWeek.map((day, index) => {

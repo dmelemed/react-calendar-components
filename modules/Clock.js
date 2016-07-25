@@ -15,12 +15,19 @@ export default class Clock extends React.Component {
     }
 
     startTicking() {
-        setInterval(() => {
+        // setInterval(() => {
+        //     console.log(this.state.time);
+        //     this.setState({
+        //         time: moment()
+        //     });
+        // }, 1);
+        setTimeout(() => {
             console.log(this.state.time);
             this.setState({
                 time: moment()
             });
-        }, 1);
+            this.startTicking();
+        }, 1)
     }
 
     render() {
