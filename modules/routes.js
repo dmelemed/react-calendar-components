@@ -8,6 +8,8 @@ import Home from './Home'
 import Clock from './Clock'
 import Hypnosis from './Hypnosis'
 import PieChart from './PieChart'
+import Modal from './Modal'
+import Recipes from './cooking/Recipes'
 
 // <IndexRoute component={App}/>
 
@@ -21,6 +23,8 @@ module.exports = (
             <Route path="/clock" component={Clock}/>
             <Route path="/hypno" component={Hypnosis}/>
             <Route path="/pie" component={PieChart}/>
+            <Route path="/modal" component={Modal}/>
+            <Route path="/recipes" component={Recipes}/>
         </Route>
     </Router>
 )

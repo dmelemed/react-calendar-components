@@ -124,7 +124,7 @@ export default class PieChart extends React.Component {
         });
 
         return (
-            <div style={{width: _width, height: _height, backgroundColor: 'lightblue'}}>
+            <div style={{width: _width, height: _height, backgroundColor: 'white'}}>
                 <svg viewBox="0 0 1000 1000" style={{width: '100%', height: '100%'}}>
                     <g>
                         {chart}
