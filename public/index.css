@@ -2,6 +2,14 @@ html {
     font-family: "Open Sans";
 }
 
+body {
+    /*font: 12px "nyt-franklin", Arial, Helvetica, sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0px;
+}
+
 .domain-background {
     fill: none;
 }

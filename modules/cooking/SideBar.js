@@ -33,7 +33,7 @@ export default class Sidebar extends React.Component {
             sidebarHeader: {
                 color: '#999',
                 fontWeight: 700,
-                fontSize: '1.9em',
+                fontSize: '1.2em',
                 lineHeight: 1,
                 padding: 0,
                 margin: '.8em 0 .6em 0'
@@ -45,7 +45,16 @@ export default class Sidebar extends React.Component {
                 color: '#FFFFFF'
             },
             menuContainer: {
+                fontSize: '16px',
                 borderBottom: '1px solid #999'
+            },
+            menuItemAnchor: {
+                margin: '0 -20px',
+                padding: '4px 20px'
+            },
+            menuItemContainer: {
+                listStyleType: 'none',
+                margin: '2px auto'
             }
         };
 
@@ -67,14 +76,38 @@ export default class Sidebar extends React.Component {
             }, {
                 label: 'Easy'
             }]
+        }, {
+            label: 'Discover',
+            items: [{
+                label: 'Recommended'
+            }, {
+                label: 'Following'
+            }, {
+                label: 'Playlists'
+            }, {
+                label: 'Friends'
+            }]
+        }, {
+            label: 'Collections',
+            items: [{
+                label: 'Quick meals'
+            }, {
+                label: 'Favorite desserts'
+            }, {
+                label: 'Fancy food'
+            }, {
+                label: 'Other recipes'
+            },{
+                label: 'Favorite recipes'
+            }]
         }];
 
         const sidebarMenus = sidebarMenusConfig.map((menu, menuIndex) => {
             console.log(menu);
             const menuItems = menu.items.map((menuItem, menuItemIndex) => {
                 return (
-                    <li style={{listStyleType: 'none'}} key={menuItemIndex}>
-                        <a>
+                    <li style={styles.menuItemContainer} key={menuItemIndex}>
+                        <a style={styles.menuItemAnchor}>
                             <span style={styles.menuItemLeft}>
                                 <span style={styles.menuItemText}>{menuItem.label}</span>
                             </span>
